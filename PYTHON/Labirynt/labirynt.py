@@ -20,7 +20,7 @@ def way(x, y):
 
     if lab[x - 1][y] == 'W':
         lab[x - 1][y] = 'D'
-        way(x, y - 1)
+        way(x - 1, y)
     if lab[x + 1][y] == 'W':
         lab[x + 1][y] = 'D'
         way(x + 1, y)
