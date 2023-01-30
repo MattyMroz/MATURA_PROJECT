@@ -1,97 +1,132 @@
-# Python3 code to implement the approach
-import sys
+import queue
+
+# Tworzenie labiryntu nr 1
+def createMaze():
+    maze = []
+    maze.append(["#", "#", "#", "#", "#", "O", "#"])
+    maze.append(["#", " ", " ", " ", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", " ", " ", "#"])
+    maze.append(["#", " ", "#", "#", "#", " ", "#"])
+    maze.append(["#", " ", " ", " ", "#", " ", "#"])
+    maze.append(["#", "#", "#", "#", "#", "X", "#"])
+
+    return maze
+
+# Tworzenie labiryntu nr 2
+def createMaze2():
+    maze = []
+    maze.append(["#", "#", "#", "#", "#", "O", "#", "#", "#"])
+    maze.append(["#", " ", " ", " ", " ", " ", " ", " ", "#"])
+    maze.append(["#", " ", "#", "#", " ", "#", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", " ", " ", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", "#", " ", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", "#", " ", "#", " ", "#"])
+    maze.append(["#", " ", "#", " ", "#", " ", "#", "#", "#"])
+    maze.append(["#", " ", " ", " ", " ", " ", " ", " ", "#"])
+    maze.append(["#", "#", "#", "#", "#", "#", "#", "X", "#"])
+
+    return maze
+
+# Funkcja do wypisywania labiryntu na ekranie
+def printMaze(maze, path=""):
+    for x, pos in enumerate(maze[0]):
+        if pos == "O":
+            start = x
+
+    i = start
+    j = 0
+    pos = set()
+    for move in path:
+        if move == "L":
+            i -= 1
+
+        elif move == "R":
+            i += 1
+
+        elif move == "U":
+            j -= 1
+
+        elif move == "D":
+            j += 1
+        pos.add((j, i))
+
+    for j, row in enumerate(maze):
+        for i, col in enumerate(row):
+            if (j, i) in pos:
+                print("+ ", end="")
+            else:
+                print(col + " ", end="")
+        print()
+
+# Funkcja sprawdzająca czy ruch jest możliwy
+def valid(maze, moves):
+    for x, pos in enumerate(maze[0]):
+        if pos == "O":
+            start = x
+
+    i = start
+    j = 0
+    for move in moves:
+        if move == "L":
+            i -= 1
+
+        elif move == "R":
+            i += 1
+
+        elif move == "U":
+            j -= 1
+
+        elif move == "D":
+            j += 1
+
+        if not(0 <= i < len(maze[0]) and 0 <= j < len(maze)):
+            return False
+        elif (maze[j][i] == "#"):
+            return False
+
+    return True
+
+# Funkcja sprawdzająca czy dotarliśmy do celu
+def findEnd(maze, moves):
+    for x, pos in enumerate(maze[0]):
+        if pos == "O":
+            start = x
+
+    i = start
+    j = 0
+    for move in moves:
+        if move == "L":
+            i -= 1
+
+        elif move == "R":
+            i += 1
+
+        elif move == "U":
+            j -= 1
+
+        elif move == "D":
+            j += 1
+
+    if maze[j][i] == "X":
+        print("Found: " + moves)
+        printMaze(maze, moves)
+        return True
+
+    return False
 
 
-# User defined Pair class
-class Pair:
-    def __init__(self, x, y):
-        self.first = x
-        self.second = y
+# MAIN ALGORITHM
+# Tworzenie kolejki
+nums = queue.Queue()
+nums.put("")
+add = ""
+maze = createMaze2()
 
-
-# Check if it is possible to go to (x, y) from the current
-# position. The function returns false if the cell has
-# value 0 or already visited
-def isSafe(mat, visited, x, y):
-    return (x >= 0 and x < len(mat) and y >= 0 and y < len(mat[0]) and mat[x][y] == 1 and (not visited[x][y]))
-
-
-def findShortestPath(mat, visited, i, j, x, y, min_dist, dist):
-    if (i == x and j == y):
-        min_dist = min(dist, min_dist)
-        return min_dist
-
-    # set (i, j) cell as visited
-    visited[i][j] = True
-
-    # go to the bottom cell
-    if (isSafe(mat, visited, i + 1, j)):
-        min_dist = findShortestPath(
-            mat, visited, i + 1, j, x, y, min_dist, dist + 1)
-
-    # go to the right cell
-    if (isSafe(mat, visited, i, j + 1)):
-        min_dist = findShortestPath(
-            mat, visited, i, j + 1, x, y, min_dist, dist + 1)
-
-    # go to the top cell
-    if (isSafe(mat, visited, i - 1, j)):
-        min_dist = findShortestPath(
-            mat, visited, i - 1, j, x, y, min_dist, dist + 1)
-
-    # go to the left cell
-    if (isSafe(mat, visited, i, j - 1)):
-        min_dist = findShortestPath(
-            mat, visited, i, j - 1, x, y, min_dist, dist + 1)
-
-    # backtrack: remove (i, j) from the visited matrix
-    visited[i][j] = False
-    return min_dist
-
-
-# Wrapper over findShortestPath() function
-def findShortestPathLength(mat, src, dest):
-    if (len(mat) == 0 or mat[src.first][src.second] == 0
-            or mat[dest.first][dest.second] == 0):
-        return -1
-
-    row = len(mat)
-    col = len(mat[0])
-
-    # construct an `M × N` matrix to keep track of visited
-    # cells
-    visited = []
-    for i in range(row):
-        visited.append([None for _ in range(col)])
-
-    dist = sys.maxsize
-    dist = findShortestPath(mat, visited, src.first,
-                            src.second, dest.first, dest.second, dist, 0)
-
-    if (dist != sys.maxsize):
-        return dist
-    return -1
-
-
-# Driver code
-mat = [[1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-       [1, 0, 1, 0, 1, 1, 1, 0, 1, 1],
-       [1, 1, 1, 0, 1, 1, 0, 1, 0, 1],
-       [0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-       [1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
-       [1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
-       [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-       [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-       [1, 1, 0, 0, 0, 0, 1, 0, 0, 1]
-       ]
-
-src = Pair(0, 0)
-dest = Pair(3, 4)
-dist = findShortestPathLength(mat, src, dest)
-if (dist != -1):
-    print("Shortest Path is", dist)
-
-else:
-    print("Shortest Path doesn't exist")
-
-# This code is contributed by phasing17
+while not findEnd(maze, add):
+    add = nums.get()
+    # print(add)
+    for j in ["L", "R", "U", "D"]:
+        put = add + j
+        if valid(maze, put):
+            nums.put(put)
