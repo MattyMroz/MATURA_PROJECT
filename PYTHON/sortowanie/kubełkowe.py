@@ -1,6 +1,9 @@
-items = []
+import random
 
-def random_list(n):
-    for i in range(n):
-        rand = random.rand(1, 100)
-    return items
+random_list = []
+list_length = 100
+
+for i in range(list_length):
+    random_list.append(random.randint(1, 100))
+
+print(random_list)
