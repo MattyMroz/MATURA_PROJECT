@@ -17,7 +17,8 @@ number_type_complex = 1j  # complex - czyli liczba zespolona
 
 # Typ sekwencyjny
 sequence_type_list = [1, 2, 3]  # list - czyli lista, która może być zmieniona
-sequence_type_tuple = (1, 2, 3)  # tuple - czyli lista, która nie moż
+sequence_type_tuple = (1, 2, 3)  # tuple - czyli krotka, która nie może być zmieniona
+sequence_type_list = 1, 2, 3  # tuple - czyli krotka, która nie może być zmieniona
 sequence_type_range = range(1, 10)  # range - czyli zakres liczb
 
 # Typ mapowania

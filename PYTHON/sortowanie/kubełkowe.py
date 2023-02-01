@@ -77,4 +77,10 @@ def sortowanie_przez_kubelki(tablica):
     return wynik
 
 tablica = [0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434]
+
+
 print("Posortowana tablica: ", sortowanie_przez_kubelki(tablica))
+
+
+tablica2 = ['kot',  'kapa', 'klacz', 'kopytko', 'kret', 'kilt', 'kogut', 'komputer', 'kara']
+print("Posortowana tablica: ", sortowanie_przez_kubelki(tablica2))
