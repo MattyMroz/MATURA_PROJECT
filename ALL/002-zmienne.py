@@ -42,3 +42,29 @@ binary_type_memoryview = memoryview(bytes(1))
 
 # Typ specjalny
 special_type_none = None  # NoneType - czyli brak wartości
+
+
+
+
+
+
+# Listy i tablice w Pythonie
+
+# W języku Python, lista i tablica różnią się między sobą następująco:
+
+# Dynamiczność vs Statyczność: Listy są dynamiczne, co oznacza, że można łatwo dodawać lub usuwać elementy z listy w czasie działania programu. Natomiast tablice są statyczne, co oznacza, że nie można łatwo zmieniać rozmiaru tablicy po jej utworzeniu.
+
+# Typy danych: Listy w Pythonie mogą przechowywać elementy różnego typu danych, takie jak liczby, łańcuchy znaków, inne listy itp. Tablice w NumPy muszą przechowywać elementy tego samego typu danych.
+
+# Wydajność: Tablice są bardziej wydajne niż listy, ponieważ dane są przechowywane w jednej płaskiej tablicy w pamięci, co umożliwia szybki dostęp do danych. Listy natomiast są implementowane jako sekwencje powiązanych list, co może powodować spowolnienie w przypadku dużych danych.
+
+# Lista
+my_list = [1, 2, 3, 4, 5]
+my_list.append(6)  # Dodaj element 6 do listy
+my_list[2] = 10  # Zmień wartość elementu o indeksie 2 na 10
+
+# Tablica z NumPy
+import numpy as np
+my_array = np.array([1, 2, 3, 4, 5])
+my_array = np.append(my_array, [6])  # Dodaj element 6 do tablicy
+my_array[2] = 10  # Zmień wartość elementu o indeksie 2 na 10

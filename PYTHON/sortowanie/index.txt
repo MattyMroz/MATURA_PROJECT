@@ -1,0 +1,10 @@
+algorytm
+- iteracyjny
+- naiwny
+- obliczania silni
+- - - iteracyjny
+- - - rekurencyjny
+- rekurencyjny
+- sortowania przez prosta zamiane
+- - - wstawianie
+- - - wybieranie
