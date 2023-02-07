@@ -82,7 +82,7 @@ def pitagoras_względnie_pierwszy():
                     print(a, b, int(c), end=" Pierwotne \n")
 
 
-# pitagoras_względnie_pierwszy()
+pitagoras_względnie_pierwszy()
 
 
 # Napisz program zamieniający wyrażanie algebraiczne zapisane w odwrotnej notacji polskiej na wyrażenie
