@@ -29,4 +29,4 @@ def frist_divisor(n):
     divisors.sort()
     return divisors
 
-print(divisors(4000))
+print(divisors(20))
