@@ -65,17 +65,6 @@ print(sort_dz_jed(nums))
 # zakresu od 1 do 1000 oraz oznaczy wszystkie trójki pierwotne, wypisując przy nich słowo pierwotne
 
 
-def dzielniki(n):
-    divisors = []
-    for i in range(1, int(n**0.5)+1):
-        if n % i == 0:
-            divisors.append(i)
-            if i != n // i:
-                divisors.append(n // i)
-    divisors.sort()
-    return divisors
-
-
 def pitagoras_pierwotny(a, b, c):
     for i in range(2, 10000):
         if a % i == 0 and b % i == 0 and c % i == 0:
@@ -93,7 +82,7 @@ def pitagoras_względnie_pierwszy():
                     print(a, b, int(c), end=" Pierwotne \n")
 
 
-pitagoras_względnie_pierwszy()
+# pitagoras_względnie_pierwszy()
 
 
 # Napisz program zamieniający wyrażanie algebraiczne zapisane w odwrotnej notacji polskiej na wyrażenie
