@@ -30,3 +30,17 @@ def frist_divisor(n):
     return divisors
 
 print(divisors(20))
+
+def nwd(a, b):
+    if a < b:
+        a, b = b, a
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+print(nwd(20, 10))
+
+def nww(a, b):
+    return a * b // nwd(a, b)
+
+print(nww(20, 10))

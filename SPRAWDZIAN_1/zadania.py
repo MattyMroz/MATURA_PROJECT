@@ -13,15 +13,31 @@ def rozklad(n):
     for i in range(2, int(n**0.5)+1):
         while n % i == 0:
             rozklad.append(i)
-            n //= i
+            n //= i  # czyli dzielenie całkowite
         licznik += 1
     if n > 1:
         rozklad.append(n)
     return rozklad
 
 
+def rozklad_2(n):
+    czynniki = []
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            czynniki.append(i)
+    if n > 1:
+        czynniki.append(n)
+    return czynniki
+
+
 print(rozklad(21))
 print(rozklad(16))
+print(rozklad_2(21))
+print(rozklad_2(16))
 
 
 # Napisz funkcję sortującą 30 losowych czterocyfrowych liczb naturalnych wg dwóch ostatnich cyfr dziesiątek
@@ -73,16 +89,17 @@ def pitagoras_pierwotny(a, b, c):
 
 
 def pitagoras_względnie_pierwszy():
-
     for a in range(1, 1000):
         for b in range(1, 1000):
             c = (a**2 + b**2)**0.5
             if c.is_integer():
                 if pitagoras_pierwotny(a, b, c):
                     print(a, b, int(c), end=" Pierwotne \n")
+                else:
+                    print(a, b, int(c))
 
 
-pitagoras_względnie_pierwszy()
+# pitagoras_względnie_pierwszy()
 
 
 # Napisz program zamieniający wyrażanie algebraiczne zapisane w odwrotnej notacji polskiej na wyrażenie
@@ -110,3 +127,28 @@ def ONPtoAlgebra(ONP_str):
 print("Zamiana wyrażenia ONP na algebraiczne:")
 ONP_str = "a b - a 1 + / 6 a b + ^ *"
 print(ONPtoAlgebra(ONP_str))
+
+
+def c(a, b):
+    c = (a**2 + b**2)**0.5
+    c2 = abs(a**2 - b**2)**0.5
+    if c == int(c):
+        print(a, b, int(c))
+    if c2 == int(c2):
+        if a > b:
+            if c2 > b:
+                print(a, b, int(c2))
+            else:
+                print(a, b, int(c))
+        else:
+            if c > a:
+                print(a, b, int(c))
+            else:
+                print(a, b, int(c2))
+
+
+
+# a = input(int("Podaj a: "))
+# b = input(int("Podaj b: "))
+
+c(12, 5)
