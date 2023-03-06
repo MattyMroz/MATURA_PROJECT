@@ -15,13 +15,11 @@ def silniowy_system_pozycyjny(n):
     if n == 0:
         return 0
     else:
-        n = str(n)
-        silnia = len(n)
-        num = 0
-        for element in n:
-            num += int(element) * silnia(silnia)
-            silnia -= 1
-        return num
+        # zamień n na string
+        s = str(n)
+        sum = 0
+        for i in range(len(s)):
+            sum += int(s[i]) * silnia(len(s) - i)
+        return sum
 
-
-print(silniowy_system_pozycyjny(310))
+print(silniowy_system_pozycyjny(1200))
