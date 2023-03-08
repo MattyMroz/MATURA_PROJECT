@@ -40,3 +40,6 @@ print("Dla 54211 wynik to: ", silniowy_system_pozycyjny("54211"))
 
 
 # https://zadania.dlamaturzysty.info/s/5159/81431-informatyka/5040154-zadania-z-informatyki-Analiza-algorytmow.htm?podstr=3
+
+
+
